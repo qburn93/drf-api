@@ -45,14 +45,14 @@ class PostDetail(APIView):
             return post
         except Post.DoesNotExist:
             raise Http404
-    
+
     def get(self, request, pk):
         post = self.get_object(pk)
         serializer = PostSerializer(
             post, context={'request': request}
         )
         return Response(serializer.data)
-    
+
     def put(self, request, pk):
         post = self.get_object(pk)
         serializer = PostSerializer(
@@ -69,5 +69,5 @@ class PostDetail(APIView):
         post = self.get_object(pk)
         post.delete()
         return Response(
-            status=status.HTTP_204_NO_CONTENT 
+            status=status.HTTP_204_NO_CONTENT
         )
